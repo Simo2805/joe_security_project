@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lab 2: SQL Injection Vulnerability Allowing Login Bypass</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h1 {
+            color: #007BFF;
+            font-size: 30px;
+            margin: 0;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin: 0 0 20px;
+        }
+
+        .expandable-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 10px;
+        }
+
+        .expandable-header {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .expandable-icon {
+            margin-right: 15px;
+            font-size: 28px;
+            transform: rotate(0deg);
+            transition: transform 0.2s;
+        }
+
+        .expandable-header.active .expandable-icon {
+            transform: rotate(90deg);
+        }
+
+        .expandable-content {
+            display: none;
+            margin-top: 20px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .solution-step {
+            display: flex;
+            align-items: flex-start;
+            margin-top: 10px;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: #007BFF;
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .step-text {
+            flex: 1;
+        }
+
+        .access-lab-button {
+            display: inline-block;
+            margin-top: 40px;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 20px;
+            transition: background-color 0.2s;
+        }
+
+        .access-lab-button:hover {
+            background-color: #005fb3;
+        }
+    </style>
+    <script>
+        function toggleContent() {
+            var content = document.querySelector('.expandable-content');
+            var header = document.querySelector('.expandable-header');
+            content.style.display = content.style.display === 'none' ? 'block' : 'none';
+            header.classList.toggle('active');
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Lab 2: SQL Injection Vulnerability Allowing Login Bypass</h1>
+        <p>Welcome to Lab 2! In this lab, you'll explore a SQL injection vulnerability in the login function of the application.</p>
+        <p>Your mission is to leverage this vulnerability to bypass the login mechanism and gain access as the administrator user.</p>
+
+        <div class="expandable-container">
+            <div class="expandable-header" onclick="toggleContent()">
+                <span class="expandable-icon">▶</span> Solution
+            </div>
+            <div class="expandable-content">
+                <div class="solution-step">
+                    <div class="step-number">1</div>
+                    <div class="step-text">
+                        <p><strong>Identify the Vulnerability:</strong></p>
+                        <p>Understand that the login form input is not properly sanitized before being used in an SQL query.</p>
+                    </div>
+                </div>
+                <div class="solution-step">
+                    <div class="step-number">2</div>
+                    <div class="step-text">
+                        <p><strong>Inject SQL Code:</strong></p>
+                        <p>Modify the username parameter by injecting SQL code.</p>
+                        <code>admin'--</code>
+                    </div>
+                </div>
+                <div class="solution-step">
+                    <div class="step-number">3</div>
+                    <div class="step-text">
+                        <p><strong>Bypass Login:</strong></p>
+                        <p>Set the username value to the injected SQL code and any value for the password field.</p>
+                    </div>
+                </div>
+                <div class="solution-step">
+                    <div class="step-number">4</div>
+                    <div class="step-text">
+                        <p><strong>Access as Administrator:</strong></p>
+                        <p>The SQL injection will bypass the login and grant you access as the administrator.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="{% url 'lab_environment:lab_2' %}" class="access-lab-button">Access Lab 2</a>
+    </div>
+</body>
+</html>

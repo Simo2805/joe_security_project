@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Joe Security Project - All Labs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #007BFF;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .section-title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .lab-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .lab-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            transition: background-color 0.2s;
+            cursor: pointer;
+        }
+
+        .lab-icon {
+            flex: 0 0 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #007BFF;
+            color: #fff;
+            font-size: 24px;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .lab-content {
+            flex: 1;
+            padding-left: 20px;
+        }
+
+        .lab-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .lab-description {
+            color: #777;
+            margin-top: 5px;
+        }
+    </style>
+    <script>
+        function navigateToLab(url) {
+            window.location.href = url;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Joe Security Project - All Labs</h1>
+        
+        <div class="section">
+            <div class="section-title">1. SQL Injection Labs</div>
+            <ul class="lab-list">
+                <li class="lab-item" onclick="navigateToLab('{% url 'lab_environment:lab_1_page' %}')">
+                    <div class="lab-icon">1</div>
+                    <div class="lab-content">
+                        <div class="lab-name">Lab 1: SQL Injection Vulnerability</div>
+                        <div class="lab-description">Uncover SQL injection vulnerability in product search.</div>
+                    </div>
+                </li>
+                <li class="lab-item" onclick="navigateToLab('{% url 'lab_environment:lab_2_page' %}')">
+                    <div class="lab-icon">2</div>
+                    <div class="lab-content">
+                        <div class="lab-name">Lab 2: SQL Injection Allowing Login Bypass</div>
+                        <div class="lab-description">Exploit SQL injection to bypass login.</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">2. Access Control Vulnerabilities</div>
+            <ul class="lab-list">
+                <li class="lab-item" onclick="navigateToLab('{% url 'lab_environment:lab_3_page' %}')">
+                    <div class="lab-icon">1</div>
+                    <div class="lab-content">
+                        <div class="lab-name">Lab 1: Unprotected Admin Functionality</div>
+                        <div class="lab-description">Access an unprotected admin panel.</div>
+                    </div>
+                </li>
+                <!-- Add more labs similarly -->
+            </ul>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">3. Cross-site Scripting (XSS)</div>
+            <ul class="lab-list">
+                <li class="lab-item" onclick="navigateToLab('{% url 'lab_environment:lab_4_page' %}')">
+                    <div class="lab-icon">1</div>
+                    <div class="lab-content">
+                        <div class="lab-name">Lab 1: Reflected XSS into HTML context</div>
+                        <div class="lab-description">Exploit reflected XSS vulnerability in HTML context.</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="section-title">4. Authentication</div>
+            <ul class="lab-list">
+                <li class="lab-item" onclick="navigateToLab('{% url 'lab_environment:lab_5_page' %}')">
+                    <div class="lab-icon">1</div>
+                    <div class="lab-content">
+                        <div class="lab-name">Lab 1: 2FA Simple Bypass</div>
+                        <div class="lab-description">Bypass two-factor authentication.</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="section-title">5. Cross-site Request Forgery (CSRF)</div>
+            <ul class="lab-list">
+                <li class="lab-item">
+                    <div class="lab-icon">1</div>
+                    <div class="lab-content">
+                        <div class="lab-name">Lab 1: Under Implementation</div>
+                        <div class="lab-description">Cross-site request forgery lab under development.</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="section-title">6. Clickjacking</div>
+            <ul class="lab-list">
+                <li class="lab-item">
+                    <div class="lab-icon">1</div>
+                    <div class="lab-content">
+                        <div class="lab-name">Lab 1: Under Implementation</div>
+                        <div class="lab-description">Clickjacking lab under development.</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="section-title">7-Server-side request forgery (SSRF) </div>
+            <ul class="lab-list">
+                <li class="lab-item">
+                    <div class="lab-icon">1</div>
+                    <div class="lab-content">
+                        <div class="lab-name">Lab 1: Under Implementation</div>
+                        <div class="lab-description">Server-side request forgery (SSRF) lab under development.</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    
+
+    <div class="section">
+        <div class="section-title">8-OS command injection </div>
+        <ul class="lab-list">
+            <li class="lab-item">
+                <div class="lab-icon">1</div>
+                <div class="lab-content">
+                    <div class="lab-name">Lab 1: Under Implementation</div>
+                    <div class="lab-description">OS command injection lab under development.</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+        <div class="section">
+            <div class="section-title">9-Server-side template injection </div>
+            <ul class="lab-list">
+                <li class="lab-item">
+                    <div class="lab-icon">1</div>
+                    <div class="lab-content">
+                        <div class="lab-name">Lab 1: Under Implementation</div>
+                        <div class="lab-description">Server-side template injection lab under development.</div>
+                    </div>
+                </li>
+            </ul>
+        </div> 
+
+        <div class="section">
+            <div class="section-title">10-HTTP request smuggling</div>
+            <ul class="lab-list">
+                <li class="lab-item">
+                    <div class="lab-icon">1</div>
+                    <div class="lab-content">
+                        <div class="lab-name">Lab 1: Under Implementation</div>
+                        <div class="lab-description">HTTP request smuggling lab under development.</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+</body>
+</html>
+
+
+
+       

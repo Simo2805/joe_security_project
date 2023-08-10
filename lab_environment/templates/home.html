@@ -1,0 +1,519 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joe Security Project</title>
+</head>
+<style>
+    body, h1, h2, h3, h4, h5, h6, p, ul, li, a, div, img {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        font-size: 100%;
+        font-family: inherit;
+        vertical-align: baseline;
+        box-sizing: border-box;
+    }
+
+
+  
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+    }
+    
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #007BFF;
+        color: #fff;
+        background: linear-gradient(to bottom, #007BFF, #0055FF);
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1)
+    }
+
+    .header-left {
+        display: flex;
+        align-items: center;
+    }
+
+    .header-logo {
+        max-width: 50px;
+        margin-right: 10px;
+    }
+
+    .header-title {
+        font-size: 32px;
+        letter-spacing: 1px;
+    }
+
+    .menu {
+        display: flex;
+        align-items: center;
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .menu-item {
+        display: inline-block;
+        margin-right: 25px;
+    }
+
+    .menu-item a,
+.learn-more-button {
+    text-decoration: none;
+}
+
+    .menu-item a {
+        color: #fff;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+
+    .menu-item a:hover {
+        color: #ffc107;
+        transform: translateY(-3px);    }
+
+   
+    
+    .menu-item a.active {
+        color: #ffc107;
+        font-weight: bold;
+    }
+    
+
+    .login-button {
+        background-color: #fff;
+        color: #007BFF;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .login-button:hover {
+        background-color: #007BFF;
+        color: #fff;
+    }
+
+    .submenu {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        padding: 10px;
+        z-index: 1;
+    }
+    
+    .menu-item:hover .submenu {
+        display: block;
+    }
+    
+    .submenu a {
+        display: block;
+        padding: 5px 0;
+        color: #333;
+        transition: color 0.3s;
+        text-decoration: none;
+    }
+    
+    .submenu a:hover {
+        color: #007BFF;
+        transform: translateY(-3px);
+
+    }
+    .security-issue {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 40px;
+        background-color: #f5f5f5;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .issue-text {
+        flex: 1;
+        padding: 20px;
+        font-size: 18px;
+        line-height: 1.6;
+    }
+
+    .issue-image {
+        flex: 1;
+        text-align: center;
+        padding: 20px;
+    }
+
+
+
+    .learn-more-button {
+        display: inline-block;
+        background-color: #007BFF;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s, color 0.3s;
+        margin-top: 10px;
+    }
+
+    .learn-more-button:hover {
+        background-color: #0055FF;
+        transform: scale(1.02);
+
+    }
+
+
+    /* Content container */
+    .content {
+        width: 70%;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+
+    .issue-image img {
+        max-width: 60%;
+        height: auto;
+    }
+    .footer {
+        background-color: #333;
+        color: #fff;
+        padding: 20px 0;
+        text-align: center;
+      }
+      
+      .footer-links a {
+        color: #fff;
+        margin: 0 10px;
+        text-decoration: none;
+      }
+      
+      .footer-project-name {
+        font-size: 18px;
+        margin-top: 10px;
+
+}
+
+* {box-sizing:border-box}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1200px;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+
+
+}
+
+
+    .mySlides img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+
+</style>
+
+  
+
+<header class="header">
+    <div class="header-left">
+        <h1 class="header-title">Joe Security Project</h1>
+    </div>
+    <div class="header-right">
+        <ul class="menu">
+            <li class="menu-item"><a href="#">Home</a></li>
+            <li class="menu-item"><a href="#">Security Topics</a>
+                <div class="submenu">
+                    <a href="{% url 'lab_environment:sql_injection' %}">SQL Injection</a>
+                    <a href="{% url 'lab_environment:xss' %}">(XSS)</a>
+                    <a href="{% url 'lab_environment:jacking' %}">Clickjacking</a>
+                    <a href="{% url 'lab_environment:auth' %}">Authentication</a>
+                    <a href="{% url 'lab_environment:access_control' %}">Access control</a>
+                </div>
+            </li>
+            <li class="menu-item"><a href="#">Blog</a></li>
+            <li class="menu-item"><a href="{% url 'lab_environment:all_labs' %}">Labs</a></li>
+            <li class="menu-item"><a href="#">
+                {% if user.is_authenticated %}
+                    Hello, {{ user.username }}
+                    {% if user.user_type == 'student' %}
+                        (Student)
+                        {% if user.score %}
+                            - Score: {{ user.score }}
+                        {% endif %}
+                    {% else %}
+                        (Staff)
+                    {% endif %}
+                {% else %}
+                    My Account
+                {% endif %}
+            </a>
+            <div class="login-form">
+                {% if not user.is_authenticated %}
+                    <form method="post" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        <input type="text" name="username" placeholder="Username">
+                        <input type="password" name="password" placeholder="Password">
+                        <input type="submit" value="Login">
+                    </form>
+                {% endif %}
+            </div>
+        </li>
+    </ul>
+</div>
+
+</header>
+<body>
+
+<!-- Slideshow container -->
+<div class="slideshow-container">
+
+    <!-- Full-width images with number and caption text -->
+    <div class="mySlides fade">
+      <div class="numbertext">1 / 3</div>
+      <img src="/media/2.jpg" style="width:100%">
+      <div class="text">Caption Text</div>
+    </div>
+  
+    <div class="mySlides fade">
+      <div class="numbertext">2 / 3</div>
+      <img src="/media/8.jpg" style="width:100%">
+      <div class="text">Caption Two</div>
+    </div>
+  
+    <div class="mySlides fade">
+      <div class="numbertext">3 / 3</div>
+      <img src="/media/1.jpg" style="width:100%">
+      <div class="text">Caption Three</div>
+    </div>
+  
+    <!-- Next and previous buttons -->
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  </div>
+  <br>
+  
+  <!-- The dots/circles -->
+  <div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+  </div>
+
+  
+
+<div class="security-issue">
+    <div class="issue-text">
+        <h3>SQL injection (SQLi)</h3>
+        <p>SQL injection (SQLi) is a web security vulnerability that allows an attacker to interfere with the queries that an application makes to its database. It generally allows an attacker to view data that they are not normally able to retrieve. This might include data belonging to other users, or any other data that the application itself is able to access. In many cases, an attacker can modify or delete this data, causing persistent changes to the application's content or behavior.</p>
+
+            <p>In some situations, an attacker can escalate a SQL injection attack to compromise the underlying server or other back-end infrastructure, or perform a denial-of-service attack</p>
+            <a href="{% url 'lab_environment:sql_injection' %}" class="learn-more-button">Learn More</a>
+        </div>
+    <div class="issue-image">
+        <img src="/media/sql_injection.png" alt="XSS">
+    </div>
+</div>
+<div class="security-issue">
+    <div class="issue-image">
+        <img src="/media/xss.png" alt="XSS">
+    </div>
+    <div class="issue-text">
+        <h3>Access Control</h3>
+        <p>Access control (or authorization) is the application of constraints on who (or what) can perform attempted actions or access resources that they have requested. In the context of web applications, access control is dependent on authentication and session management:</p>
+
+         <p>   1-Authentication identifies the user and confirms that they are who they say they are.</p>
+         <p>   2-Session management identifies which subsequent HTTP requests are being made by that same user.</p>
+         <p>   3-Access control determines whether the user is allowed to carry out the action that they are attempting to perform.</p>
+         <a href="{% url 'lab_environment:access_control' %}" class="learn-more-button">Learn More</a>
+        </div>
+   
+</div>
+
+
+<div class="security-issue">
+    <div class="issue-text">
+        <h3>Authentication vulnerabilities</h3>
+        <p>Conceptually at least, authentication vulnerabilities are some of the simplest issues to understand. However, they can be among the most critical due to the obvious relationship between authentication and security. As well as potentially allowing attackers direct access to sensitive data and functionality, they also expose additional attack surface for further exploits. For this reason, learning how to identify and exploit authentication vulnerabilities, including how to bypass common protection measures, is a fundamental skill.</p>
+        <p>In this section, we'll look at some of the most common authentication mechanisms used by websites and discuss potential vulnerabilities in them. We'll highlight both inherent vulnerabilities in different authentication mechanisms, as well as some typical vulnerabilities that are introduced by their improper implementation. Finally, we'll provide some basic guidance on how you can ensure that your own authentication mechanisms are as robust as possible</p>
+        <a href="{% url 'lab_environment:auth' %}" class="learn-more-button">Learn More</a>
+    </div>
+    <div class="issue-image">
+        <img src="/media/auth.png" alt="XSS">
+    </div>
+</div>
+<div class="security-issue">
+
+    <div class="issue-image">
+        <img src="/media/xss.png" alt="XSS">
+    </div>
+    <div class="issue-text">
+        <h3>Cross-Site Scripting (XSS)</h3>
+        <p>Cross-site scripting (also known as XSS) is a web security vulnerability that allows an attacker to compromise the interactions that users have with a vulnerable application. It allows an attacker to circumvent the same origin policy, which is designed to segregate different websites from each other. Cross-site scripting vulnerabilities normally allow an attacker to masquerade as a victim user, to carry out any actions that the user is able to perform, and to access any of the user's data. If the victim user has privileged access within the application, then the attacker might be able to gain full control over all of the application's functionality and data.</p>
+        <h3>How does XSS work? </h3>
+        <p>Cross-site scripting works by manipulating a vulnerable web site so that it returns malicious JavaScript to users. When the malicious code executes inside a victim's browser, the attacker can fully compromise their interaction with the application.</p>
+        <a href="{% url 'lab_environment:xss' %}" class="learn-more-button">Learn More</a>
+
+    </div>
+   
+</div>
+
+<div class="security-issue">
+    <div class="issue-text">
+        <h3>Click Jacking</h3>
+        <p>Conceptually at least, authentication vulnerabilities are some of the simplest issues to understand. However, they can be among the most critical due to the obvious relationship between authentication and security. As well as potentially allowing attackers direct access to sensitive data and functionality, they also expose additional attack surface for further exploits. For this reason, learning how to identify and exploit authentication vulnerabilities, including how to bypass common protection measures, is a fundamental skill.</p>
+        <p>In this section, we'll look at some of the most common authentication mechanisms used by websites and discuss potential vulnerabilities in them. We'll highlight both inherent vulnerabilities in different authentication mechanisms, as well as some typical vulnerabilities that are introduced by their improper implementation. Finally, we'll provide some basic guidance on how you can ensure that your own authentication mechanisms are as robust as possible</p>
+        <a href="{% url 'lab_environment:jacking' %}" class="learn-more-button">Learn More</a>
+    </div>
+    <div class="issue-image">
+        <img src="/media/auth.png" alt="XSS">
+    </div>
+</div>
+
+<!-- Add more security issue sections here -->
+
+<footer class="footer">
+    <div class="footer-links">
+      <a href="#">Home</a>
+      <a href="#">Security Topics</a>
+      <a href="#">Blog</a>
+      <a href="{% url 'lab_environment:all_labs' %}">Labs</a>
+      <a href="#">My Account</a>
+    </div>
+    <p class="footer-project-name">Joe Security Project</p>
+  </footer>
+
+
+  <script>
+    let slideIndex = 0;
+    showSlides();
+  
+    function showSlides() {
+      let i;
+      let slides = document.getElementsByClassName("mySlides");
+      let dots = document.getElementsByClassName("dot");
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) {
+        slideIndex = 1;
+      }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex - 1].style.display = "block";
+      dots[slideIndex - 1].className += " active";
+      setTimeout(showSlides, 5000); // Change image every 2 seconds
+    }
+
+    function plusSlides(n) {
+        showSlides((slideIndex += n));
+    }
+    
+    function currentSlide(n) {
+        showSlides((slideIndex = n));
+    }
+  </script>
+
+</body>
+
+</html>

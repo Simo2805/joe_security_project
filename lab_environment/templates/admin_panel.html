@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unprotected Admin Functionality</title>
+    <style>
+        /* CSS styles for the admin panel page */
+        body {
+            margin: 0; /* Remove default margin to avoid spacing issues */
+            font-family: Arial, sans-serif; /* Choose a suitable font-family */
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        header div {
+            font-weight: bold;
+        }
+
+        h1 {
+            text-align: center; /* Center the title */
+            margin: 20px 0; /* Add some margin below the title */
+        }
+
+        .admin-panel {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex; /* Use flexbox to align users and products sections */
+            flex-wrap: wrap;
+            justify-content: space-between; /* Add space between the sections */
+        }
+
+        .user-section {
+            /* Set a fixed width for the user section */
+            width: calc(33.33% - 20px); /* 1/3 of the screen minus some margin */
+            padding: 10px;
+            border: 1px solid #007BFF;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .user-section h3 {
+            margin-bottom: 10px; /* Add some spacing below the user name */
+        }
+
+        .user-section p {
+            margin: 5px 0; /* Add some margin to the job title */
+        }
+
+        .user-section button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .product-grid {
+            flex: 2; /* Use flex to occupy 2/3 of the screen */
+            padding: 20px; /* Add some padding to the product grid */
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex; /* Display products side by side */
+            flex-wrap: wrap; /* Wrap products to next row if necessary */
+            justify-content: space-between; /* Add space between the products */
+        }
+
+        .product-card {
+            width: calc(40% - 10px); /* 1/2 of the product grid width minus some margin */
+            padding: 30px;
+            border: 1px solid #007BFF; /* Add frame with the same color as buttons */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .product-card img {
+            max-width: 150%;
+            height: 150px; /* Set a fixed height for the product images */
+            border-radius: 5px;
+            object-fit: cover; /* Ensure the images maintain their aspect ratio and cover the entire container */
+        }
+
+        .product-card h3 {
+            margin-top: 10px; /* Add some spacing below the product name */
+        }
+
+        .product-card p {
+            font-weight: bold; /* Make the price text bold */
+        }
+
+        .product-card button {
+            margin-top: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .hidden-products-title {
+            text-align: center;
+            margin-top: 20px;
+            width: 100%; /* Set the width of the hidden products title */
+        }
+
+        .hidden-products-title h2 {
+            margin: 0;
+        }
+
+        .hidden-products-title p {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .success-message {
+            text-align: center;
+            color: green;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin Panel</h1>
+    <a href="{% url 'lab_environment:home' %}">Home</a>
+
+    <!-- Success Message (Visible after deleting a user) -->
+    {% if lab_resolved %}
+        <p class="success-message">Congratulations, the lab has been resolved.</p>
+        <script>
+            // Reload the page after 2 seconds to hide the success message
+            setTimeout(function () {
+                window.location.reload();
+            }, 200000);
+        </script>
+    {% endif %}
+
+    <div class="admin-panel">
+        <div class="user-section">
+            <h1>Admin Users</h1>
+            {% if fake_users %}
+                {% for user in fake_users %}
+                    <h3>{{ user.username }}</h3>
+                    <p>Job Title: {{ user.job_title }}</p>
+                    <form method="post" action="{% url 'lab_environment:admin_panel' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="username_to_delete" value="{{ user.username }}">
+                        <button type="submit">Delete User</button>
+                    </form>
+                {% endfor %}
+            {% else %}
+                <p>No users found in the admin panel.</p>
+            {% endif %}
+        </div>
+
+        <div class="product-grid">
+            <div class="hidden-products-title">
+                <h2>Hidden Products</h2>
+                <p>These products are hidden from regular users.</p>
+            </div>
+            {% for product in products %}
+                <div class="product-card">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    {% endif %}
+                    <h3>{{ product.name }}</h3>
+                    <p>Price: ${{ product.price }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- JavaScript Function to Delete User -->
+    <script>
+        function deleteUser(username) {
+            if (confirm('Are you sure you want to delete this user?')) {
+                // Perform the delete action (Note: This is just a simulation for the vulnerable lab)
+                // In a real application, this action should be handled securely on the server side.
+                alert(`User '${username}' has been deleted.`);
+                window.location.reload();
+            }
+        }
+    </script>
+
+   
+
+</body>
+</html>

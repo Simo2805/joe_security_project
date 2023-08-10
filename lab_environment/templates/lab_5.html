@@ -1,0 +1,159 @@
+<!-- lab_environment/templates/lab_5.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product List</title>
+    <style>
+        /* CSS styles for the product grid and header */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+    
+        header div {
+            font-weight: bold;
+        }
+    
+        body {
+            margin: 0; /* Remove default margin to avoid spacing issues */
+            font-family: Arial, sans-serif; /* Choose a suitable font-family */
+        }
+    
+        h1 {
+            text-align: center; /* Center the title */
+            margin: 20px 0; /* Add some margin below the title */
+        }
+    
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 30px;
+            padding: 20px; /* Add some padding to the product grid */
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    
+        .product-card {
+            border: 1px solid #007BFF; /* Add frame with the same color as buttons */
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%; /* Ensure each product card takes full width of its container */
+        }
+    
+        .product-card img {
+            max-width: 150%;
+            height: 150px; /* Set a fixed height for the product images */
+            border-radius: 5px;
+            object-fit: cover; /* Ensure the images maintain their aspect ratio and cover the entire container */
+        }
+    
+        .product-card h3 {
+            margin-top: 10px; /* Add some spacing below the product name */
+        }
+    
+        .product-card p {
+            font-weight: bold; /* Make the price text bold */
+        }
+    
+        .product-card button {
+            margin-top: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+    
+        .product-card button a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .selected-category {
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        
+    
+        /* Style the filter form */
+        form {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px; /* Add some spacing below the filter form */
+        }
+    
+        select {
+            margin-right: 10px; /* Add spacing between the select element and the button */
+        }
+    
+        button[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        
+        /* Continue CSS styles for the filter form */
+        form {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px; /* Add some spacing below the filter form */
+        }
+
+        select {
+            margin-right: 10px; /* Add spacing between the select element and the button */
+        }
+
+        button[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+    </style>
+
+</head>
+<body>
+    <header>
+        <div>Joe Security Project</div>
+        <div>Lab 5: 2FA simple bypass</div>
+        <a href="{% url 'lab_environment:home' %}">Home</a>
+        <a href="{% url 'lab_environment:lab_login_2fa' %}">Login</a> <!-- Add the link to the login page -->
+    </header>
+    <h1>Security Books Shop</h1>
+    <h2>Try to login and pass the two-factor authentication</h2>
+
+    <ul>
+        <div class="product-grid">
+            {% for product in products %}
+                <div class="product-card">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    {% endif %}
+                    <h3>{{ product.name }}</h3>
+                    <p>Price: ${{ product.price }}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+
+        
+</body>
+</html>
+   

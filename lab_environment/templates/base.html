@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joe Security Project - SQL Injection</title>
+    <!-- Include your CSS styles here -->
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <h1 class="header-title">Joe Security Project</h1>
+        </div>
+        <div class="header-right">
+            <ul class="menu">
+                <li class="menu-item"><a href="{% url 'lab_environment:home' %}">Home</a></li>
+                <li class="menu-item"><a href="#">Security Topics</a>
+                    <div class="submenu">
+                        <a href="{% url 'lab_environment:sql_injection' %}">SQL Injection</a>
+                        <a href="{% url 'lab_environment:xss' %}">(XSS)</a>
+                        <a href="{% url 'lab_environment:jacking' %}">Clickjacking</a>
+                        <a href="{% url 'lab_environment:auth' %}">Authentication</a>
+                        <a href="{% url 'lab_environment:access_control' %}">Access control</a>
+                    </div>
+                </li>
+                <li class="menu-item"><a href="#">Blog</a></li>
+                <li class="menu-item"><a href="{% url 'lab_environment:all_labs' %}">Labs</a></li>
+                <li class="menu-item"><a href="#">
+                    {% if user.is_authenticated %}
+                        Hello, {{ user.username }}
+                        {% if user.user_type == 'student' %}
+                            (Student)
+                            {% if user.score %}
+                                - Score: {{ user.score }}
+                            {% endif %}
+                        {% else %}
+                            (Staff)
+                        {% endif %}
+                    {% else %}
+                        My Account
+                    {% endif %}
+                </a>
+                <div class="login-form">
+                    {% if not user.is_authenticated %}
+                        <form method="post" action="{% url 'login' %}">
+                            {% csrf_token %}
+                            <input type="text" name="username" placeholder="Username">
+                            <input type="password" name="password" placeholder="Password">
+                            <input type="submit" value="Login">
+                        </form>
+                    {% endif %}
+                </div>
+            </li>
+        </ul>
+    </div>
+</header>
+
+{% block content %}
+<!-- Content of the security issue page goes here -->
+{% endblock %}
+
+
+<footer class="footer">
+    <div class="footer-links">
+      <a href="#">Home</a>
+      <a href="#">Security Topics</a>
+      <a href="#">Blog</a>
+      <a href="{% url 'lab_environment:all_labs' %}">Labs</a>
+      <a href="#">My Account</a>
+    </div>
+    <p class="footer-project-name">Joe Security Project</p>
+  </footer>
+</footer>
+
+<!-- Include your JavaScript scripts here -->
+
+</body>
+</html>
